@@ -2,7 +2,9 @@ package comexamplecoursework2.service;
 
 import comexamplecoursework2.entity.Question;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public interface QuestionService {
     Question add(String question, String answer);
@@ -11,7 +13,7 @@ public interface QuestionService {
 
     Question remove(Question question);
 
-    List<Question> getAll();
+    Set<Question> getAll();
 
     Question getRandomQuestion();
 }

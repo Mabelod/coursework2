@@ -4,31 +4,25 @@ import comexamplecoursework2.entity.Question;
 import comexamplecoursework2.example.LargeNumberOfQuestions;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    QuestionService questionService;
+    private final QuestionService questionService;
 
     public ExaminerServiceImpl(QuestionService questionService) {
         this.questionService = questionService;
     }
 
     @Override
-    public List<Question> getQuestions(int amount) {
-        if (amount > questionService.getAll().size()) {
+    public Collection<Question> getQuestions(int amount) {
+        if (amount > questionService.getAll().size() || amount <= 0) {
             throw new LargeNumberOfQuestions("Превышена длинна массива");
         }
-        List<Question> questions = new ArrayList<>();
-        questions.add(questionService.getRandomQuestion());
-        int counter = 0;
-        while (amount - 1 > counter) {
-            Question question = questionService.getRandomQuestion();
-            if (!questions.contains(question)) {
-                questions.add(question);
-                counter++;
+        Set<Question> questions = new HashSet<>();
+        while (questions.size() < amount) {
+            questions.add(questionService.getRandomQuestion());
             }
-        }
         return questions;
     }
 }

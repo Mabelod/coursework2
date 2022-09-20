@@ -1,7 +1,7 @@
-GET http://localhost:8080/exam/java/add?question=QuestionText&answer=QuestionAnswer1
+GET http://localhost:8080/exam/java/add?questionText=QuestionText&questionAnswer=QuestionAnswer1
 ###
 GET http://localhost:8080/exam/java
 ###
-GET http://localhost:8080/exam/java/remove?question=QuestionText&answer=QuestionAnswer1
+GET http://localhost:8080/exam/java/remove?questionText=QuestionText&questionAnswer=QuestionAnswer1
 ###
-GET http://localhost:8080/randomQuestion?number=1
+GET http://localhost:8080/exam/get/6

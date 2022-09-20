@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
 @RestController
-@RequestMapping("/exam/java")
+@RequestMapping("/java")
 public class JavaQuestionController {
     private final QuestionService questionService;
 
@@ -19,17 +20,17 @@ public class JavaQuestionController {
     }
 
     @GetMapping("/add")
-    public Question addQuestion(@RequestParam("question") String QuestionText, @RequestParam("answer") String QuestionAnswer) {
-        return questionService.add(questionService.add(QuestionText, QuestionAnswer));
+    public Question addQuestion(@RequestParam("questionText") String questionText, @RequestParam("questionAnswer") String questionAnswer) {
+        return questionService.add(questionText, questionAnswer);
     }
 
     @GetMapping()
-    public List<Question> getQuestion() {
+    public Collection<Question> getQuestion() {
         return questionService.getAll();
     }
 
     @GetMapping("/remove")
-    public Question removeQuestion(@RequestParam("question") String QuestionText, @RequestParam("answer") String QuestionAnswer) {
-        return questionService.remove(questionService.add(QuestionText, QuestionAnswer));
+    public Question removeQuestion(@RequestParam("questionText") String questionText, @RequestParam("questionAnswer") String questionAnswer) {
+        return questionService.remove(new Question(questionText, questionAnswer));
     }
 }
